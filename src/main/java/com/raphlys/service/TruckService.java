@@ -1,28 +1,27 @@
 package com.raphlys.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.raphlys.dto.TruckDto;
+import com.raphlys.model.TruckModel;
+import com.raphlys.repository.TruckRepository;
 
 @Service
 public class TruckService {
 
-	// Dernier identifiant utilisé pour un camion
-    private Long last_id = 0l;
-
-    // Map pour stocker les camions avec leur identifiant
-    private final Map<Long, TruckDto> TRUCKS = new HashMap<>();
-
+	
+	@Autowired
+	private TruckRepository truckRepository;
+	
     /**
      * Récupère tous les camions.
      * @return une collection de tous les camions.
      */
     public Collection<TruckDto> getAll() {
-        return TRUCKS.values();
+        return truckRepository.findAll().stream().map(truck -> toDto(truck)).toList();
     }
 
     /**
@@ -31,10 +30,7 @@ public class TruckService {
      * @return l'identifiant du camion créé.
      */
     public Long create(TruckDto truck) {
-        truck.setId(last_id);
-        TRUCKS.put(truck.getId(), truck);
-        last_id++;
-        return truck.getId();
+        return truckRepository.save(toModel(truck)).getId();
     }
 
     /**
@@ -43,7 +39,7 @@ public class TruckService {
      * @return l'ancien camion associé à l'identifiant donné.
      */
     public TruckDto update(TruckDto truck) {
-        return TRUCKS.put(truck.getId(), truck);
+    	return toDto(truckRepository.save(toModel(truck)));
     }
 
     /**
@@ -52,6 +48,23 @@ public class TruckService {
      * @return true si le camion a été supprimé, false sinon.
      */
     public boolean delete(Long id) {
-        return TRUCKS.remove(id) != null;
+    	truckRepository.deleteById(id);
+        return true;
+    }
+    
+    private TruckDto toDto(TruckModel model) {
+    	TruckDto dto = new TruckDto();
+    	dto.setId(model.getId());
+    	dto.setBrand(model.getBrand());
+    	dto.setName(model.getName());
+    	return dto;
+    }
+    
+    private TruckModel toModel(TruckDto dto) {
+    	TruckModel model = new TruckModel();
+    	model.setId(dto.getId());
+    	model.setBrand(dto.getBrand());
+    	model.setName(dto.getName());
+    	return model;
     }
 }
