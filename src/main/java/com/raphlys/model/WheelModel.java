@@ -5,11 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
-@Entity(name = "truck")
-public class TruckModel {
+@Entity()
+public class WheelModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,11 +17,7 @@ public class TruckModel {
     private String brand;
 
 	@Column(unique = true)
-    private String name;
-	
-	@OneToOne
-	@JoinColumn(name = "wheel_id")
-	private WheelModel wheel;
+    private String size;
 
 	public Long getId() {
 		return id;
@@ -41,13 +35,12 @@ public class TruckModel {
 		this.brand = brand;
 	}
 
-	public String getName() {
-		return name;
+	public String getSize() {
+		return size;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setSize(String size) {
+		this.size = size;
 	}
-    
-    
+
 }
