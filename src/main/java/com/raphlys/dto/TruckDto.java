@@ -1,6 +1,8 @@
 package com.raphlys.dto;
 
-public class TruckDto {
+import java.util.List;
+
+public class TruckDto  {
 	   // Identifiant unique du camion
     private Long id;
 
@@ -9,6 +11,12 @@ public class TruckDto {
 
     // Nom du camion
     private String name;
+
+	private WheelSteeringDto wheelSteering;
+
+	private List<WheelDto> wheels;
+
+	private List<DriverDto> drivers;
 
     // Getters et setters pour les propriétés de Truck
     public Long getId() {
@@ -34,4 +42,29 @@ public class TruckDto {
     public void setName(String name) {
         this.name = name;
     }
+
+	public WheelSteeringDto getWheelSteering() {
+		return wheelSteering;
+	}
+
+	public void setWheelSteering(WheelSteeringDto wheelSteering) {
+		this.wheelSteering = wheelSteering;
+	}
+
+	public List<WheelDto> getWheels() {
+		return wheels;
+	}
+
+	public void setWheels(List<WheelDto> wheels) {
+		this.wheels = wheels;
+	}
+
+	public List<DriverDto> getDrivers() {
+		return drivers;
+	}
+
+	public void setDrivers(List<DriverDto> drivers) {
+		this.drivers = drivers;
+	}
+    
 }

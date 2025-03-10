@@ -5,11 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity()
-public class WheelModel {
+public class WheelSteeringModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +20,7 @@ public class WheelModel {
 	@Column(unique = true)
     private String size;
 	
-	@ManyToOne()
-	@JoinColumn(name = "truck_id")
+	@OneToOne(mappedBy = "wheelSteering")
 	private TruckModel truck;
 
 	public Long getId() {
@@ -56,8 +54,6 @@ public class WheelModel {
 	public void setTruck(TruckModel truck) {
 		this.truck = truck;
 	}
-	
-	
 	
 	
 
