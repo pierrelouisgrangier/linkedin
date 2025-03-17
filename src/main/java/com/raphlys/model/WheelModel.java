@@ -1,5 +1,7 @@
 package com.raphlys.model;
 
+import com.raphlys.common.IModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity()
-public class WheelModel {
+public class WheelModel implements IModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

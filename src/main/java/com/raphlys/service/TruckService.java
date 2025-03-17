@@ -1,12 +1,14 @@
 package com.raphlys.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.raphlys.converter.TruckConverter;
 import com.raphlys.dto.TruckDto;
-import com.raphlys.model.TruckModel;
+import com.raphlys.model.WheelModel;
 import com.raphlys.repository.TruckRepository;
 
 @Service
@@ -16,12 +18,15 @@ public class TruckService {
 	@Autowired
 	private TruckRepository truckRepository;
 	
+	@Autowired
+	private TruckConverter truckConverter;
+	
     /**
      * Récupère tous les camions.
      * @return une collection de tous les camions.
      */
     public Collection<TruckDto> getAll() {
-        return truckRepository.findAll().stream().map(truck -> toDto(truck)).toList();
+        return truckRepository.findAll().stream().map(truck -> truckConverter.toDto(truck)).toList();
     }
 
     /**
@@ -30,7 +35,7 @@ public class TruckService {
      * @return l'identifiant du camion créé.
      */
     public Long create(TruckDto truck) {
-        return truckRepository.save(toModel(truck)).getId();
+        return truckRepository.save(truckConverter.toModel(truck, List.of(WheelModel.class))).getId();
     }
 
     /**
@@ -39,7 +44,7 @@ public class TruckService {
      * @return l'ancien camion associé à l'identifiant donné.
      */
     public TruckDto update(TruckDto truck) {
-    	return toDto(truckRepository.save(toModel(truck)));
+    	return truckConverter.toDto(truckRepository.save(truckConverter.toModel(truck)));
     }
 
     /**
@@ -52,19 +57,4 @@ public class TruckService {
         return true;
     }
     
-    private TruckDto toDto(TruckModel model) {
-    	TruckDto dto = new TruckDto();
-    	dto.setId(model.getId());
-    	dto.setBrand(model.getBrand());
-    	dto.setName(model.getName());
-    	return dto;
-    }
-    
-    private TruckModel toModel(TruckDto dto) {
-    	TruckModel model = new TruckModel();
-    	model.setId(dto.getId());
-    	model.setBrand(dto.getBrand());
-    	model.setName(dto.getName());
-    	return model;
-    }
 }

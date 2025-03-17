@@ -2,6 +2,8 @@ package com.raphlys.model;
 
 import java.util.List;
 
+import com.raphlys.common.IModel;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,7 +13,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity()
-public class DriverModel {
+public class DriverModel implements IModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

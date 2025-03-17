@@ -2,7 +2,9 @@ package com.raphlys.dto;
 
 import java.util.List;
 
-public class DriverDto {
+import com.raphlys.common.IDto;
+
+public class DriverDto implements IDto {
 
 	private Long id;
 

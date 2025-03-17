@@ -1,5 +1,7 @@
 package com.raphlys.model;
 
+import com.raphlys.common.IModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,18 +10,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity()
-public class WheelSteeringModel {
+public class WheelSteeringModel implements IModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(nullable = false)
-    private String brand;
+	private String brand;
 
 	@Column(unique = true)
-    private String size;
-	
+	private String size;
+
 	@OneToOne(mappedBy = "wheelSteering")
 	private TruckModel truck;
 
@@ -54,7 +56,5 @@ public class WheelSteeringModel {
 	public void setTruck(TruckModel truck) {
 		this.truck = truck;
 	}
-	
-	
 
 }

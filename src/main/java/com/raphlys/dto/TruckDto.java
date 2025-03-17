@@ -2,7 +2,9 @@ package com.raphlys.dto;
 
 import java.util.List;
 
-public class TruckDto  {
+import com.raphlys.common.IDto;
+
+public class TruckDto  implements IDto {
 	   // Identifiant unique du camion
     private Long id;
 

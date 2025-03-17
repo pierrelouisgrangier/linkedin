@@ -1,13 +1,14 @@
 package com.raphlys.dto;
 
-public class WheelDto {
+import com.raphlys.common.IDto;
+
+public class WheelDto implements IDto {
 
 	private Long id;
 
-    private String brand;
+	private String brand;
 
-    private String size;
-	
+	private String size;
 
 	private TruckDto truck;
 
@@ -42,9 +43,5 @@ public class WheelDto {
 	public void setTruck(TruckDto truck) {
 		this.truck = truck;
 	}
-	
-	
-	
-	
 
 }

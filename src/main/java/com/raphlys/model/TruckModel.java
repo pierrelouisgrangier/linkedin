@@ -2,6 +2,8 @@ package com.raphlys.model;
 
 import java.util.List;
 
+import com.raphlys.common.IModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "truck")
-public class TruckModel {
+public class TruckModel implements IModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
