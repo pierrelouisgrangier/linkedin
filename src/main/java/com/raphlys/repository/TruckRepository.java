@@ -17,9 +17,9 @@ public interface TruckRepository extends JpaRepository<TruckModel, Long> {
 	@Query("SELECT t FROM truck t where name like concat(:begin, '%')")
 	List<TruckModel> maisOuQuiSontLesCamionsQuiCommencePar(@Param("begin") String begin);
 
-	@Query("Select t from truck t where t.wheel.brand = :brand")
+	@Query("Select t from truck t where t.wheelSteering.brand = :brand")
 	List<TruckModel> findByWheelBrand(@Param("brand") String brand);
 
-	@Query(value = "select * from truck t inner join wheel w on t.wheel_id = w.id where w.brand = :brand", nativeQuery = true)
+	@Query(value = "select * from truck t inner join wheel_model w on t.wheel_id = w.id where w.brand = :brand", nativeQuery = true)
 	List<TruckModel> findByWheelBrandNative(@Param("brand") String brand);
 }
