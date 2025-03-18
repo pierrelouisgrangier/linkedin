@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.raphlys.common.IDto;
 
-public class TruckDto  implements IDto {
+public class TruckDto  implements IDto<Long> {
 	   // Identifiant unique du camion
     private Long id;
 

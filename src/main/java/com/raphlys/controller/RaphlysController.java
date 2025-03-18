@@ -30,8 +30,8 @@ public class RaphlysController {
      * @return une collection de tous les camions.
      */
     @GetMapping("all")
-    public Collection<TruckDto> getAll() {
-        return truckService.getAll();
+    public Collection<TruckDto> findAll() {
+        return truckService.findAll();
     }
 
     /**
@@ -40,7 +40,7 @@ public class RaphlysController {
      * @return l'identifiant du camion créé.
      */
     @PostMapping()
-    public Long createTruck(@RequestBody() TruckDto truck) {
+    public TruckDto createTruck(@RequestBody() TruckDto truck) {
         return truckService.create(truck);
     }
 

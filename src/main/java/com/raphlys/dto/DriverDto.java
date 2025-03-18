@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.raphlys.common.IDto;
 
-public class DriverDto implements IDto {
+public class DriverDto implements IDto<Long> {
 
 	private Long id;
 

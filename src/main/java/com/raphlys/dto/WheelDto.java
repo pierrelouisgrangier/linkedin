@@ -2,7 +2,7 @@ package com.raphlys.dto;
 
 import com.raphlys.common.IDto;
 
-public class WheelDto implements IDto {
+public class WheelDto implements IDto<Long> {
 
 	private Long id;
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.raphlys.common.IModel;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "truck")
-public class TruckModel implements IModel {
+public class TruckModel implements IModel<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,11 +28,11 @@ public class TruckModel implements IModel {
 	@Column(unique = true)
 	private String name;
 
-	@OneToOne(optional = false)
+	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "wheel_steering_id")
 	private WheelSteeringModel wheelSteering;
 
-	@OneToMany(mappedBy = "truck")
+	@OneToMany(mappedBy = "truck", cascade = CascadeType.ALL)
 	private List<WheelModel> wheels;
 
 	@ManyToMany(mappedBy = "trucks")

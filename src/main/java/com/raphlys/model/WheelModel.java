@@ -11,7 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity()
-public class WheelModel implements IModel {
+public class WheelModel implements IModel<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

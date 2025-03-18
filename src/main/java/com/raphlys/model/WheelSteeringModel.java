@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 
 @Entity()
-public class WheelSteeringModel implements IModel {
+public class WheelSteeringModel implements IModel<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,3 +1,5 @@
 package com.raphlys.common;
 
-public interface IDto {}
+public interface IDto<K> {
+	K getId();
+}

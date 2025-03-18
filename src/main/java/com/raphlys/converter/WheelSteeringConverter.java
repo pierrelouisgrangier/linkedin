@@ -3,31 +3,31 @@ package com.raphlys.converter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.raphlys.common.ConverterDtoModel;
 import com.raphlys.dto.TruckDto;
-import com.raphlys.dto.WheelDto;
+import com.raphlys.dto.WheelSteeringDto;
 import com.raphlys.model.TruckModel;
-import com.raphlys.model.WheelModel;
-import com.raphlys.repository.WheelRepository;
+import com.raphlys.model.WheelSteeringModel;
 
 @Service
-public class WheelConverter extends ConverterDtoModel<WheelModel, WheelDto, Long>{
+public class WheelSteeringConverter extends ConverterDtoModel<WheelSteeringModel, WheelSteeringDto, Long>{
 	
 	@Autowired
-	private WheelRepository repository;
+	private JpaRepository<WheelSteeringModel, Long> repository;
 	
 	@Autowired
 	private TruckConverter truckConverter;
 
-	public WheelConverter() {
-		super(WheelDto.class, WheelModel.class);
+	public WheelSteeringConverter() {
+		super(WheelSteeringDto.class, WheelSteeringModel.class);
 	}
 
 	@Override
-	protected WheelDto internalToDto(WheelModel model, List<Class<?>> classes) {
-		WheelDto dto = new WheelDto();
+	protected WheelSteeringDto internalToDto(WheelSteeringModel model, List<Class<?>> classes) {
+		WheelSteeringDto dto = new WheelSteeringDto();
 		dto.setBrand(model.getBrand());
 		dto.setId(model.getId());
 		dto.setSize(model.getSize());
@@ -38,8 +38,8 @@ public class WheelConverter extends ConverterDtoModel<WheelModel, WheelDto, Long
 	}
 
 	@Override
-	protected WheelModel internalToModel(WheelDto dto, List<Class<?>> classes) {
-		WheelModel model = new WheelModel();
+	protected WheelSteeringModel internalToModel(WheelSteeringDto dto, List<Class<?>> classes) {
+		WheelSteeringModel model = new WheelSteeringModel();
 		if(dto.getId()!=null) {
 			model = repository.findById(dto.getId()).get();
 		}

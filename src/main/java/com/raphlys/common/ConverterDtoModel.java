@@ -3,7 +3,7 @@ package com.raphlys.common;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class ConverterDtoModel<M extends IModel, D extends IDto> {
+public abstract class ConverterDtoModel<M extends IModel<K>, D extends IDto<K>, K> {
 
 	private final Class<D> dtoClass;
 	private final Class<M> modelClass;
@@ -18,11 +18,11 @@ public abstract class ConverterDtoModel<M extends IModel, D extends IDto> {
 	protected abstract M internalToModel(D dto, List<Class<?>> classes);
 
 	public final D toDto(M model, List<Class<?>> classes) {
-		return internalToDto(model, classes.stream().filter(cla -> cla.equals(this.dtoClass)).toList());
+		return internalToDto(model, classes.stream().filter(cla -> !cla.equals(this.dtoClass)).toList());
 	}
 
 	public final M toModel(D dto, List<Class<?>> classes) {
-		return internalToModel(dto, classes.stream().filter(cla -> cla.equals(this.modelClass)).toList());
+		return internalToModel(dto, classes.stream().filter(cla -> !cla.equals(this.modelClass)).toList());
 
 	}
 

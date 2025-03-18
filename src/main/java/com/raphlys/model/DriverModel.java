@@ -13,7 +13,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity()
-public class DriverModel implements IModel {
+public class DriverModel implements IModel<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

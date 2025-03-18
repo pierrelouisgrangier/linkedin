@@ -1,3 +1,5 @@
 package com.raphlys.common;
 
-public interface IModel {}
+public interface IModel<K> {
+	K getId();
+}
